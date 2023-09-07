@@ -8,7 +8,7 @@ import * as THREE from 'three'
 export default function Experience()
 {
 
-    const cubeCount = 3
+    const cubeCount = 300
     const instances = useMemo(() => 
     {
         const instances = []
@@ -16,8 +16,12 @@ export default function Experience()
         for (let i = 0; i < cubeCount; i++) {
            instances.push({
                 key: 'instance_' + i,
-                position: [i * 2, 0,0],
-                rotation: [0,0,0]
+                position: [
+                    (Math.random() - 0.5) * 8,
+                    6 + i * 0.2,
+                    (Math.random() - 0.5) * 8
+                ],
+                rotation: [Math.random(),Math.random(),Math.random()]
            })
             
         }
@@ -90,7 +94,7 @@ export default function Experience()
         <directionalLight castShadow position={ [ 1, 2, 3 ] } intensity={ 1.5 } />
         <ambientLight intensity={ 0.5 } />
 
-        <Physics debug gravity={[0, -9.81, 0]}>
+        <Physics debug={false} gravity={[0, -9.81, 0]}>
 
             <RigidBody
                 position={[0, - 0.8, 0]}
